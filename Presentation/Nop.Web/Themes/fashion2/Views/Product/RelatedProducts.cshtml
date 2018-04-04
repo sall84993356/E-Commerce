@@ -1,0 +1,18 @@
+﻿@model IList<ProductOverviewModel>
+
+@using Nop.Web.Models.Catalog;
+@if (Model.Count > 0)
+{
+    <div class="related-products-grid">
+        <div class="title">
+            <strong>@T("Products.RelatedProducts")</strong>
+        </div>
+
+ @{int j = 0;}
+        @foreach (var item in Model)
+        {   j++;
+            <div  class="item-box @(j%6==0?"last":"")">
+@Html.Partial("_ProductBoxRelated", item)</div>
+        }
+    </div>
+}

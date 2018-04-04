@@ -1,0 +1,75 @@
+﻿@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Services.Localization
+@using Nop.Web.Framework.Themes
+@{
+    //logo path
+    var currentThemeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+    var logoPath = "~/Themes/" + currentThemeName + "/Content/images/logo.png";
+
+    //store name
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+}
+
+<div class="header">
+    @Html.Widget("header")
+    <div class="header-logo">
+        <a href="@Url.RouteUrl("HomePage")">
+            <img title="" alt="@storeName" src="@Url.Content(logoPath)">
+        </a>
+    </div>
+
+<div class="tag-txt">
+
+For the Ladies and Gentlemen Special Offers
+</div>
+
+
+
+<div class="header-box">
+  <div class="min-links">
+    <ul>
+        <li><a href="@Url.RouteUrl("Topic", new {SeName = Html.GetTopicSeName("shippinginfo") })" >Shipping</a></li>
+        <li><a href="@Url.RouteUrl("Blog")" >Blog</a></li>
+        <li><a href="@Url.RouteUrl("Topic", new {SeName = Html.GetTopicSeName("aboutus") })" >About</a></li>
+    </ul>
+  </div>
+
+
+    <div class="header-links-wrapper">
+        @Html.Action("HeaderLinks", "Common")
+       
+    </div>
+
+<div class="header-selectors-wrapper">
+        <div class="tax-display-type-selector">
+            @Html.Action("TaxTypeSelector", "Common")
+        </div>
+        <div class="currency-selector">
+            @Html.Action("CurrencySelector", "Common")
+        </div>
+        <div class="language-selector">
+            @Html.Action("LanguageSelector", "Common")
+        </div>
+        @Html.Widget("header_selectors")
+    </div>
+
+</div>
+<div class="header-search">
+
+    <div class="search-box">
+        @Html.Action("SearchBox", "Catalog")
+    </div>
+
+
+
+            <div class="cart-link">
+              
+
+ @Html.Action("FlyoutShoppingCart", "ShoppingCart")
+            </div>
+      
+</div>
+
+    
+</div>

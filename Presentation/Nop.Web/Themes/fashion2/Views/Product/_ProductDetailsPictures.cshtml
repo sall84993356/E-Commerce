@@ -1,0 +1,57 @@
+﻿@model ProductDetailsModel
+@using Nop.Core.Domain.Media
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Models.Catalog;
+@{
+    Html.AddScriptParts("~/Scripts/jquery.magnific-popup.js");
+    Html.AddCssFileParts("~/Content/magnific-popup/magnific-popup.css");
+
+    int productPerRow = EngineContext.Current.Resolve<MediaSettings>().ProductThumbPerRowOnProductDetailsPage;
+}
+<div class="gallery">
+@*Delivery date*@
+@if (Model.FreeShippingNotificationEnabled && Model.IsFreeShipping)
+{
+    <div class="free-shipping">@T("Products.FreeShipping")</div>
+}
+
+<div class="clear"></div>
+
+<div class="sp-wrap">
+
+
+ @for (int i = 0; i < Model.PictureModels.Count; i++)
+            {
+                var picture = Model.PictureModels[i];
+
+                if (i % productPerRow == 0)
+                {
+                @Html.Raw("")
+                }
+            
+       
+   	      
+            <a href="@picture.FullSizeImageUrl">    
+            <img  src="@picture.FullSizeImageUrl"  itemprop="image" />
+          
+   		</a>
+
+                if ((i % productPerRow == (productPerRow - 1)) ||
+                    //last image
+                    (i == (Model.PictureModels.Count - 1)))
+                {
+                @Html.Raw("")
+                }
+            }
+
+
+
+@*<a href="@Model.DefaultPictureModel.FullSizeImageUrl"><img src="@Model.DefaultPictureModel.FullSizeImageUrl" ></a>*@
+
+</div>
+
+
+
+</div>
+
+

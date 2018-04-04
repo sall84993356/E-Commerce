@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+<div class="page home-page">
+    <div class="page-body">
+
+        <div class="home-banner">
+
+
+            @Html.Widget("home_page_top")
+        </div>
+
+@Html.Action("TopicBlock", "Topic", new { systemName = "HomePageText" })
+
+        <div class="clear"></div>
+
+        @Html.Widget("home_page_bottom")
+        
+        @*
+        
+        @Html.Action("HomepageProducts", "Product")
+        @Html.Action("HomepageBestSellers", "Product")
+        @Html.Action("HomePageNews", "News")
+        @Html.Action("HomePagePolls", "Poll")
+       *@
+    </div>
+</div>
